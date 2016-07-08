@@ -5,12 +5,12 @@ import { StateUpdates, Effect, toPayload } from '@ngrx/effects'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { CounterActions } from './';
+import { CounterActions, CounterState } from './';
 
 @Injectable()
 export class CounterEffects {
   constructor(private counterActions: CounterActions,
-              private updates$: StateUpdates<any>) { }
+              private updates$: StateUpdates<CounterState>) { }
 
   @Effect() resetSuccess$ = this.updates$
       // Listen for the 'RESET' action
