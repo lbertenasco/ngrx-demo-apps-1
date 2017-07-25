@@ -9,19 +9,23 @@ export const CounterActionTypes = {
 
 
 export class IncrementAction implements Action {
-  type = CounterActionTypes.INCREMENT;
+  readonly type = CounterActionTypes.INCREMENT;
+  constructor() {}
 }
 
 export class DecrementAction implements Action {
-  type = CounterActionTypes.DECREMENT;
+  readonly type = CounterActionTypes.DECREMENT;
+  constructor() {}
 }
 
 export class ResetAction implements Action {
-  type = CounterActionTypes.RESET;
+  readonly type = CounterActionTypes.RESET;
+  constructor() {}
 }
 
 export class ResetSuccessAction implements Action {
-  type = CounterActionTypes.RESET_SUCCESS;
+  readonly type = CounterActionTypes.RESET_SUCCESS;
+  constructor() {}
 }
 
 export type CounterActions =

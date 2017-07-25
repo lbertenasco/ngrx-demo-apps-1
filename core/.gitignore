@@ -1,3 +1,6 @@
+*.ngsummary.json
+*.ngfactory.ts
+
 node_modules/
 dist/
 aot/

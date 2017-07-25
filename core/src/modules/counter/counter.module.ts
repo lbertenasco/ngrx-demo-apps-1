@@ -8,7 +8,9 @@ import { counterReducer } from './counter.reducer';
   declarations: [
   ],
   imports: [
-    EffectsModule.run(CounterEffects)
+    EffectsModule.forFeature([
+      CounterEffects
+    ])
   ],
   providers: [
   ]

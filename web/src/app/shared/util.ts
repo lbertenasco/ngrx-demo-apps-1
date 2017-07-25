@@ -3,7 +3,7 @@ import { multicast } from 'rxjs/operator/multicast';
 import { Scheduler } from 'rxjs/Scheduler';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
-import { compose } from '@ngrx/core/compose';
+import { compose } from '@ngrx/store';
 
 /**
  * This function coerces a string into a string literal type.

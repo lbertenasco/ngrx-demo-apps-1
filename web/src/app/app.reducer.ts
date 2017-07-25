@@ -1,26 +1,54 @@
-import '@ngrx/core/add/operator/select';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/let';
-import { combineReducers } from '@ngrx/store';
-import { compose } from '@ngrx/core/compose';
-import { storeLogger } from 'ngrx-store-logger';
+import {
+  ActionReducerMap,
+  createSelector,
+  createFeatureSelector,
+  ActionReducer,
+} from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { share, Selector } from './shared/util';
-import { environment } from '../environments/environment';
-import { counterReducer } from 'ngrx-demo-core';
+import { storeLogger } from 'ngrx-store-logger';
 
-const reducers = {
-  counter: counterReducer
+import { environment } from '../environments/environment';
+
+/**
+ * Every reducer module's default export is the reducer function itself. In
+ * addition, each module should export a type or interface that describes
+ * the state of the reducer plus any selector functions. The `* as`
+ * notation packages up all of the exports into a single object.
+ */
+
+import { CounterState, counterReducer } from 'ngrx-demo-core';
+
+/**
+ * As mentioned, we treat each reducer like a table in a database. This means
+ * our top level state interface is just a map of keys to inner state types.
+ */
+export interface State {
+  counter: CounterState,
+}
+
+/**
+ * Our state is composed of a map of action reducer functions.
+ * These reducer functions are called with each dispatched action
+ * and the current or initial state and return a new immutable state.
+ */
+export const reducers: ActionReducerMap<State> = {
+  counter: counterReducer,
 };
 
-const developmentReducer = compose(storeFreeze, storeLogger(), combineReducers)(reducers);
-const productionReducer = combineReducers(reducers);
+// console.log all actions
+export function logger(reducer: ActionReducer<State>): ActionReducer<any, any> {
+  return function(state: State, action: any): State {
+    console.log('state', state);
+    console.log('action', action);
 
-export function reducer(state: any, action: any) {
-  if (environment.production) {
-    return productionReducer(state, action);
-  }
-  else {
-    return developmentReducer(state, action);
-  }
+    return reducer(state, action);
+  };
 }
+/**
+ * By default, @ngrx/store uses combineReducers with the reducer map to compose
+ * the root meta-reducer. To add more meta-reducers, provide an array of meta-reducers
+ * that will be composed to form the root meta-reducer.
+ */
+export const metaReducers: ActionReducer<any, any>[] = !environment.production
+  ? [storeFreeze, logger /*storeLogger is not working for ngrx4*/]
+  : [];
