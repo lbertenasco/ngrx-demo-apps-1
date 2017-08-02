@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { CounterEffects } from './counter.effects';
 import { counterReducer } from './counter.reducer';
@@ -8,11 +9,24 @@ import { counterReducer } from './counter.reducer';
   declarations: [
   ],
   imports: [
-    EffectsModule.forFeature([
-      CounterEffects
-    ])
   ],
   providers: [
   ]
 })
-export class CounterModule {}
+export class CounterModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: RootCounterModule,
+      providers: [],
+    };
+  }
+}
+
+@NgModule({
+  imports: [
+    CounterModule,
+    StoreModule.forFeature('counter', counterReducer),
+    EffectsModule.forFeature([CounterEffects]),
+  ],
+})
+export class RootCounterModule {}

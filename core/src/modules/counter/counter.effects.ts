@@ -14,23 +14,25 @@ import { empty } from 'rxjs/observable/empty';
 import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 
-import {
-  CounterActionTypes,
-  CounterActions,
-  ResetAction,
-  ResetSuccessAction
-} from './counter.actions';
+import * as CounterActions from './counter.actions';
 
 @Injectable()
 export class CounterEffects {
 
 
-  @Effect() init$: Observable<Action> = defer(() => {
-      return of(new ResetAction());
+  @Effect()
+  init$: Observable<Action> = defer(() => {
+      console.log('ResetAction INIT');
+      return of(new CounterActions.ResetAction());
     });
-  @Effect() resetSuccess$ = this.actions$
-    .ofType(CounterActionTypes.RESET)
-    .map(() => new ResetSuccessAction());
+
+  @Effect()
+  resetSuccess$ = this.actions$
+    .ofType(CounterActions.RESET)
+    .map(() => {
+      console.log('ResetAction RESET');
+      return new CounterActions.ResetSuccessAction();
+    });
 
   constructor(private actions$: Actions) { }
 }

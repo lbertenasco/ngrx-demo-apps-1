@@ -1,34 +1,31 @@
 import { Action } from '@ngrx/store';
 
-export const CounterActionTypes = {
-  INCREMENT: '[Counter] Increment',
-  DECREMENT: '[Counter] Decrement',
-  RESET: '[Counter] Reset',
-  RESET_SUCCESS: '[Counter] ResetSucess'
-};
-
+export const INCREMENT = '[Counter] Increment';
+export const DECREMENT = '[Counter] Decrement';
+export const RESET = '[Counter] Reset';
+export const RESET_SUCCESS = '[Counter] ResetSucess';
 
 export class IncrementAction implements Action {
-  readonly type = CounterActionTypes.INCREMENT;
+  readonly type = INCREMENT;
   constructor() {}
 }
 
 export class DecrementAction implements Action {
-  readonly type = CounterActionTypes.DECREMENT;
+  readonly type = DECREMENT;
   constructor() {}
 }
 
 export class ResetAction implements Action {
-  readonly type = CounterActionTypes.RESET;
+  readonly type = RESET;
   constructor() {}
 }
 
 export class ResetSuccessAction implements Action {
-  readonly type = CounterActionTypes.RESET_SUCCESS;
+  readonly type = RESET_SUCCESS;
   constructor() {}
 }
 
-export type CounterActions =
+export type Actions =
     IncrementAction
   | DecrementAction
   | ResetAction

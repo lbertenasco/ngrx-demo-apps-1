@@ -29,17 +29,17 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@angular/common": "4.3.1",
-    "@angular/compiler": "4.3.1",
-    "@angular/compiler-cli": "4.3.1",
-    "@angular/core": "4.3.1",
-    "@angular/platform-browser": "4.3.1",
-    "@ngrx/effects": "4.0.1",
-    "@ngrx/store": "4.0.0",
-    "@types/node": "8.0.16",
+    "@angular/common": "4.3.2",
+    "@angular/compiler": "4.3.2",
+    "@angular/compiler-cli": "4.3.2",
+    "@angular/core": "4.3.2",
+    "@angular/platform-browser": "4.3.2",
+    "@ngrx/effects": "4.0.2",
+    "@ngrx/store": "4.0.2",
+    "@types/node": "8.0.19",
     "rxjs": "5.4.2",
     "tslint": "5.5.0",
     "typescript": "2.4.2",
-    "zone.js": "0.8.14"
+    "zone.js": "0.8.16"
   }
 }

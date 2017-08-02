@@ -8,7 +8,7 @@ import 'rxjs';
 import { environment } from '../environments/environment';
 
 import { DemoCoreModule, CounterModule } from 'ngrx-demo-core';
-import { reducers, metaReducers } from './app.reducer';
+import { metaReducers } from './app.reducer';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -20,15 +20,13 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers: metaReducers
-    }),
+    StoreModule.forRoot([], { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
 
     EffectsModule.forRoot([]),
 
     DemoCoreModule,
-    CounterModule,
+    CounterModule.forRoot()
   ],
   providers: []
 })

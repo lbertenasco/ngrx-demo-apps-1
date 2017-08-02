@@ -31,8 +31,9 @@ export interface State {
  * These reducer functions are called with each dispatched action
  * and the current or initial state and return a new immutable state.
  */
-export const reducers: ActionReducerMap<State> = {
-  counter: counterReducer,
+export const reducers: ActionReducerMap<State> | any = {
+  // for local reducers
+  //counter: counterReducer,
 };
 
 // console.log all actions
